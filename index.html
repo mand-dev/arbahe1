@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة أرباحي (Erbahi) - لوحة التحكم</title>
+    <title>منصة أرباحي الشاملة (Erbahi Pro)</title>
     <style>
         :root {
             --primary: #6366f1;
@@ -15,483 +15,358 @@
             --text-muted: #94a3b8;
             --success: #10b981;
             --danger: #ef4444;
+            --warning: #f59e0b;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 480px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #4f46e5, #3b82f6);
-            padding: 30px 20px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 24px;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-
-        .header p {
-            font-size: 14px;
-            color: #e2e8f0;
-        }
-
-        .form-section, .dashboard-section {
-            padding: 25px;
-            display: none;
-        }
-
-        .active-section {
-            display: block;
-        }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 6px;
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px 14px;
-            background: #0f172a;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: #fff;
-            font-size: 15px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .form-group input:focus {
-            border-color: var(--primary);
-        }
-
-        .error-msg {
-            color: var(--danger);
-            font-size: 12px;
-            margin-top: 4px;
-            display: block;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 12px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-            margin-top: 10px;
-        }
-
-        .btn:hover {
-            background: var(--primary-hover);
-        }
-
-        .switch-text {
-            text-align: center;
-            margin-top: 16px;
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        .switch-text a {
-            color: #3b82f6;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .switch-text a:hover {
-            text-decoration: underline;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .stat-card {
-            background: #0f172a;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .stat-card h3 {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-        }
-
-        .stat-card .value {
-            font-size: 20px;
-            font-weight: bold;
-            color: var(--success);
-        }
-
-        .action-box {
-            background: #0f172a;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-
-        .action-box h4 {
-            font-size: 15px;
-            margin-bottom: 8px;
-        }
-
-        .action-box p {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-        }
-
-        .timer-display {
-            font-weight: bold;
-            color: #f59e0b;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
-
-        .logout-btn {
-            background: transparent;
-            border: 1px solid var(--danger);
-            color: var(--danger);
-            margin-top: 15px;
-        }
-
-        .logout-btn:hover {
-            background: var(--danger);
-            color: white;
-        }
-
-        .alert-box {
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 13px;
-            margin-bottom: 15px;
-            display: none;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-main); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 15px; }
+        .container { width: 100%; max-width: 500px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #4f46e5, #3b82f6); padding: 25px 20px; text-align: center; }
+        .header h1 { font-size: 22px; color: #fff; margin-bottom: 5px; }
+        .header p { font-size: 13px; color: #e2e8f0; }
+        .section { padding: 20px; display: none; }
+        .active-section { display: block; }
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; margin-bottom: 5px; font-size: 13px; color: var(--text-muted); }
+        .form-group input, .form-group select { width: 100%; padding: 11px; background: #0f172a; border: 1px solid var(--border-color); border-radius: 8px; color: #fff; font-size: 14px; outline: none; }
+        .form-group input:focus { border-color: var(--primary); }
+        .btn { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 8px; transition: 0.2s; }
+        .btn:hover { background: var(--primary-hover); }
+        .btn-success { background: var(--success); }
+        .btn-warning { background: var(--warning); color: #000; }
+        .btn-danger { background: var(--danger); }
+        .switch-text { text-align: center; margin-top: 14px; font-size: 13px; color: var(--text-muted); }
+        .switch-text a { color: #3b82f6; text-decoration: none; cursor: pointer; }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
+        .stat-card { background: #0f172a; border: 1px solid var(--border-color); border-radius: 10px; padding: 12px; text-align: center; }
+        .stat-card h3 { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+        .stat-card .value { font-size: 18px; font-weight: bold; color: var(--success); }
+        .action-box { background: #0f172a; border: 1px solid var(--border-color); border-radius: 10px; padding: 12px; margin-bottom: 12px; font-size: 13px; }
+        .alert-box { padding: 10px; border-radius: 6px; font-size: 12px; margin-bottom: 12px; display: none; text-align: center; }
         .alert-success { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid var(--success); }
         .alert-error { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid var(--danger); }
+        .nav-tabs { display: flex; gap: 5px; margin-bottom: 15px; background: #0f172a; padding: 5px; border-radius: 8px; }
+        .nav-tab { flex: 1; padding: 8px; text-align: center; font-size: 12px; background: transparent; border: none; color: var(--text-muted); cursor: pointer; border-radius: 6px; }
+        .nav-tab.active { background: var(--primary); color: #fff; font-weight: bold; }
+        table { width: 100%; font-size: 11px; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid var(--border-color); padding: 6px; text-align: center; }
+        th { background: #0f172a; color: var(--text-muted); }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header">
-        <h1 id="header-title">منصة أرباحي (Erbahi)</h1>
-        <p id="header-subtitle">سجل حسابك وابدأ بربح وتحويل الأموال فوراً</p>
+        <h1 id="header-title">منصة أرباحي الشاملة</h1>
+        <p id="header-subtitle">استثمار، مهام، وإدارة كاملة</p>
     </div>
 
     <div id="alert-box" class="alert-box"></div>
 
-    <!-- قسم تسجيل الدخول -->
-    <div id="login-section" class="form-section active-section">
-        <form id="login-form" onsubmit="handleLogin(event)">
-            <div class="form-group">
-                <label>البريد الإلكتروني</label>
-                <input type="email" id="login-email" placeholder="example@domain.com" required>
-            </div>
-            <div class="form-group">
-                <label>كلمة المرور</label>
-                <input type="password" id="login-password" placeholder="••••••••" required>
-            </div>
+    <!-- تسجيل الدخول -->
+    <div id="login-section" class="section active-section">
+        <form onsubmit="handleLogin(event)">
+            <div class="form-group"><label>البريد الإلكتروني</label><input type="email" id="login-email" required></div>
+            <div class="form-group"><label>كلمة المرور</label><input type="password" id="login-password" required></div>
             <button type="submit" class="btn">تسجيل الدخول</button>
-            <div class="switch-text">
-                ليس لديك حساب؟ <a onclick="switchTab('signup')">انشئ حساباً جديداً</a>
-            </div>
+            <div class="switch-text">ليس لديك حساب؟ <a onclick="switchView('signup')">إنشاء حساب جديد</a></div>
         </form>
     </div>
 
-    <!-- قسم تسجيل مستخدم جديد -->
-    <div id="signup-section" class="form-section">
-        <form id="signup-form" onsubmit="handleSignup(event)">
-            <div class="form-group">
-                <label>الاسم الكامل (3 أحرف على الأقل)</label>
-                <input type="text" id="signup-name" placeholder="ادخل اسمك الكامل..." required>
-                <span id="name-error" class="error-msg"></span>
-            </div>
-            <div class="form-group">
-                <label>البريد الإلكتروني الحقيقي</label>
-                <input type="email" id="signup-email" placeholder="name@example.com" required>
-                <span id="email-error" class="error-msg"></span>
-            </div>
-            <div class="form-group">
-                <label>كلمة المرور (6 أحرف أو أرقام على الأقل)</label>
-                <input type="password" id="signup-password" placeholder="••••••••" required>
-                <span id="pass-error" class="error-msg"></span>
-            </div>
-            <div class="form-group">
-                <label>رقم المحفظة / معرف السحب (USDT / بيرير)</label>
-                <input type="text" id="signup-wallet" placeholder="ادخل معرف الحساب أو المحفظة..." required>
-            </div>
-            <button type="submit" class="btn">إنشاء الحساب والتسجيل</button>
-            <div class="switch-text">
-                لديك حساب بالفعل؟ <a onclick="switchTab('login')">تسجيل الدخول</a>
-            </div>
+    <!-- تسجيل مستخدم جديد -->
+    <div id="signup-section" class="section">
+        <form onsubmit="handleSignup(event)">
+            <div class="form-group"><label>الاسم الكامل</label><input type="text" id="signup-name" required></div>
+            <div class="form-group"><label>البريد الإلكتروني الحقيقي</label><input type="email" id="signup-email" required></div>
+            <div class="form-group"><label>كلمة المرور (6 خانات على الأقل)</label><input type="password" id="signup-password" required></div>
+            <div class="form-group"><label>رقم محفظة السحب (USDT / بيرير)</label><input type="text" id="signup-wallet" required></div>
+            <button type="submit" class="btn">تسجيل وإنشاء الحساب</button>
+            <div class="switch-text">لديك حساب بالفعل؟ <a onclick="switchView('login')">تسجيل الدخول</a></div>
         </form>
     </div>
 
-    <!-- لوحة التحكم -->
-    <div id="dashboard-section" class="dashboard-section">
-        <div style="margin-bottom: 20px; text-align: center;">
-            <h3 style="font-size: 18px; color: #fff;">أهلاً بك، <span id="user-display-name" style="color: #3b82f6;"></span></h3>
-            <p style="font-size: 13px; color: var(--text-muted);" id="user-display-email"></p>
+    <!-- لوحة تحكم المستخدم -->
+    <div id="user-dashboard" class="section">
+        <div style="text-align: center; margin-bottom: 12px;">
+            <h3 style="font-size: 16px;">مرحباً، <span id="u-name" style="color:#3b82f6;"></span></h3>
+            <p style="font-size: 11px; color: var(--text-muted);" id="u-email"></p>
         </div>
 
         <div class="stats-grid">
-            <div class="stat-card">
-                <h3>الرصيد المتاح (Balance)</h3>
-                <div class="value" id="balance-val">$0.00</div>
+            <div class="stat-card"><h3>الرصيد المتاح</h3><div class="value" id="u-balance">$0.00</div></div>
+            <div class="stat-card"><h3>الأرباح المعلقة</h3><div class="value" id="u-pending" style="color:#f59e0b;">$0.00</div></div>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="switchUserTab('tasks')">المهام والأرباح</button>
+            <button class="nav-tab" onclick="switchUserTab('wallet')">السحب والإيداع</button>
+            <button class="nav-tab" onclick="switchUserTab('invite')">دعوة الأصدقاء</button>
+        </div>
+
+        <!-- تبويب المهام -->
+        <div id="utab-tasks" class="user-subtab">
+            <div class="action-box">
+                <p><b>المهمة:</b> مشاهدة الإعلان الترويجي (10 ثوانٍ)</p>
+                <div id="timer-box" style="color:var(--warning); font-weight:bold; display:none; margin: 6px 0;">الوقت المتبقي: <span id="countdown">10</span> ثوانٍ</div>
+                <button id="task-btn" class="btn" onclick="startTask()">بدء تنفيذ المهمة ($0.50)</button>
             </div>
-            <div class="stat-card">
-                <h3>الأرباح المعلقة</h3>
-                <div class="value" id="pending-val" style="color: #f59e0b;">$0.00</div>
+            <button class="btn btn-success" onclick="transferPending()">تحويل الأرباح المعلقة إلى البلانس 💰</button>
+        </div>
+
+        <!-- تبويب السحب والإيداع -->
+        <div id="utab-wallet" class="user-subtab" style="display:none;">
+            <div class="action-box">
+                <h4>طلب سحب الأرباح</h4>
+                <div class="form-group" style="margin-top:8px;"><label>المبلغ المراد سحبه ($)</label><input type="number" id="withdraw-amount" min="1" placeholder="الحد الأدنى $5"></div>
+                <button class="btn btn-warning" onclick="requestWithdraw()">إرسال طلب سحب</button>
+            </div>
+            <div class="action-box">
+                <h4>شحن رصيد (إيداع)</h4>
+                <p>قم بالتحويل إلى محفظة المنصة وأدخل رقم العملية:</p>
+                <div class="form-group" style="margin-top:8px;"><label>رقم العملية / الحوالة</label><input type="text" id="deposit-tx" placeholder="أدخل رقم المعاملة..."></div>
+                <button class="btn" onclick="requestDeposit()">تأكيد طلب الإيداع</button>
             </div>
         </div>
 
-        <div style="margin-bottom: 20px;">
-            <button class="btn" style="background: var(--success);" onclick="transferPendingToBalance()">تحويل الأرباح المعلقة إلى الرصيد 💰</button>
+        <!-- تبويب دعوة الأصدقاء -->
+        <div id="utab-invite" class="user-subtab" style="display:none;">
+            <div class="action-box" style="text-align: center;">
+                <h4>رابط الإحالة الخاص بك</h4>
+                <p style="margin: 6px 0;">اربح $0.20 عن كل صديق يسجل من خلال رابطك!</p>
+                <input type="text" id="ref-link" readonly style="text-align:center; margin-bottom:8px; font-size:12px;">
+                <button class="btn" onclick="copyRefLink()">نسخ الرابط</button>
+            </div>
         </div>
 
-        <div class="action-box">
-            <h4>المهمة النشطة: مشاهدة الإعلان الترويجي</h4>
-            <p>انقر على الزر أدناه وانتظر انتهاء العداد التنازلي لإضافة الربح إلى رصيدك المعلق.</p>
-            <div id="timer-box" class="timer-display" style="display: none;">الوقت المتبقي: <span id="countdown">10</span> ثوانٍ</div>
-            <button id="task-btn" class="btn" onclick="startTask()">ابدأ تنفيذ المهمة</button>
-        </div>
-
-        <button class="btn logout-btn" onclick="handleLogout()">تسجيل الخروج</button>
+        <button class="btn btn-danger" style="margin-top:15px;" onclick="logout()">تسجيل الخروج</button>
     </div>
+
+    <!-- لوحة تحكم المشرف (Admin Panel) -->
+    <div id="admin-dashboard" class="section">
+        <h3 style="color:var(--warning); text-align:center; margin-bottom:10px;">👑 لوحة تحكم الأدمن (المشرف)</h3>
+        <p style="font-size:11px; color:var(--text-muted); text-align:center; margin-bottom:15px;">مراقبة المستخدمين والتحكم الكامل بالمنصة</p>
+        
+        <div class="stats-grid">
+            <div class="stat-card"><h3>إجمالي المستخدمين</h3><div class="value" id="adm-users-count" style="color:#3b82f6;">0</div></div>
+            <div class="stat-card"><h3>إجمالي طلبات السحب</h3><div class="value" id="adm-withdraw-count" style="color:#f59e0b;">0</div></div>
+        </div>
+
+        <h4 style="font-size:13px; margin-top:10px;">قائمة المستخدمين المسجلين:</h4>
+        <div style="max-height: 180px; overflow-y: auto; margin-top: 5px;">
+            <table id="users-table">
+                <tr><th>الاسم</th><th>البريد</th><th>الرصيد ($)</th><th>إجراء</th></tr>
+            </table>
+        </div>
+
+        <button class="btn btn-danger" style="margin-top:15px;" onclick="logout()">تسجيل الخروج من الأدمن</button>
+    </div>
+
 </div>
 
 <script>
-    let currentUser = JSON.parse(localStorage.getItem('erbahi_current_user')) || null;
+    // البريد الخاص بك لتفعيل صلاحيات الأدمن تلقائياً
+    const ADMIN_EMAIL = "admin@erbahi.com"; // يمكنك تغييره للبريد الذي تريده
+
+    let users = JSON.parse(localStorage.getItem('erbahi_all_users')) || [];
+    let currentUser = JSON.parse(localStorage.getItem('erbahi_logged')) || null;
 
     window.onload = function() {
         if (currentUser) {
-            showDashboard();
+            if (currentUser.email === ADMIN_EMAIL) {
+                showAdminDashboard();
+            } else {
+                showUserDashboard();
+            }
         }
     }
 
-    function showAlert(message, type) {
-        const alertBox = document.getElementById('alert-box');
-        alertBox.innerText = message;
-        alertBox.className = `alert-box alert-${type}`;
-        alertBox.style.display = 'block';
-        setTimeout(() => {
-            alertBox.style.display = 'none';
-        }, 4000);
+    function showAlert(msg, type) {
+        let box = document.getElementById('alert-box');
+        box.innerText = msg;
+        box.className = `alert-box alert-${type}`;
+        box.style.display = 'block';
+        setTimeout(() => box.style.display = 'none', 3500);
     }
 
-    function switchTab(tab) {
-        document.getElementById('login-section').classList.remove('active-section');
-        document.getElementById('signup-section').classList.remove('active-section');
-        
-        if (tab === 'login') {
-            document.getElementById('login-section').classList.add('active-section');
-            document.getElementById('header-title').innerText = "منصة أرباحي (Erbahi)";
-            document.getElementById('header-subtitle').innerText = "سجل دخولك لمتابعة أرباحك";
-        } else {
-            document.getElementById('signup-section').classList.add('active-section');
-            document.getElementById('header-title').innerText = "انضم إلى منصة أرباحي";
-            document.getElementById('header-subtitle').innerText = "املأ البيانات الحقيقية أدناه لإنشاء حسابك";
-        }
+    function switchView(view) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active-section'));
+        if(view === 'login') document.getElementById('login-section').classList.add('active-section');
+        if(view === 'signup') document.getElementById('signup-section').classList.add('active-section');
     }
 
     function handleSignup(event) {
         event.preventDefault();
-        
-        const name = document.getElementById('signup-name').value.trim();
-        const email = document.getElementById('signup-email').value.trim();
-        const password = document.getElementById('signup-password').value.trim();
-        const wallet = document.getElementById('signup-wallet').value.trim();
+        let name = document.getElementById('signup-name').value.trim();
+        let email = document.getElementById('signup-email').value.trim();
+        let password = document.getElementById('signup-password').value.trim();
+        let wallet = document.getElementById('signup-wallet').value.trim();
 
-        document.getElementById('name-error').innerText = "";
-        document.getElementById('email-error').innerText = "";
-        document.getElementById('pass-error').innerText = "";
-
-        let isValid = true;
-
-        if (name.length < 3) {
-            document.getElementById('name-error').innerText = "الاسم قصير جداً (3 أحرف على الأقل).";
-            isValid = false;
-        }
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            document.getElementById('email-error').innerText = "البريد الإلكتروني غير صالح (أدخل بريداً حقيقياً).";
-            isValid = false;
-        }
-
-        if (password.length < 6) {
-            document.getElementById('pass-error').innerText = "كلمة المرور يجب ألا تقل عن 6 أحرف أو أرقام.";
-            isValid = false;
-        }
-
-        if (!isValid) return;
-
-        let registeredUsers = JSON.parse(localStorage.getItem('erbahi_users')) || [];
-        const existing = registeredUsers.find(u => u.email === email);
-        if (existing) {
-            showAlert("هذا البريد الإلكتروني مسجل مسبقاً، يرجى تسجيل الدخول.", "error");
+        if(users.find(u => u.email === email)) {
+            showAlert("البريد مسجل مسبقاً!", "error");
             return;
         }
 
-        const newUser = {
-            name: name,
-            email: email,
-            password: password,
-            wallet: wallet,
-            balance: 0.00,
-            pending: 0.00
-        };
-
-        registeredUsers.push(newUser);
-        localStorage.setItem('erbahi_users', JSON.stringify(registeredUsers));
-        localStorage.setItem('erbahi_current_user', JSON.stringify(newUser));
+        let newUser = { name, email, password, wallet, balance: 0, pending: 0, withdraws: [], deposits: [] };
+        users.push(newUser);
+        localStorage.setItem('erbahi_all_users', JSON.stringify(users));
+        localStorage.setItem('erbahi_logged', JSON.stringify(newUser));
         currentUser = newUser;
 
-        showAlert("تم إنشاء الحساب بنجاح!", "success");
-        setTimeout(showDashboard, 1000);
+        showAlert("تم التسجيل بنجاح!", "success");
+        setTimeout(() => location.reload(), 1000);
     }
 
     function handleLogin(event) {
         event.preventDefault();
-        const email = document.getElementById('login-email').value.trim();
-        const password = document.getElementById('login-password').value.trim();
+        let email = document.getElementById('login-email').value.trim();
+        let password = document.getElementById('login-password').value.trim();
 
-        let registeredUsers = JSON.parse(localStorage.getItem('erbahi_users')) || [];
-        const user = registeredUsers.find(u => u.email === email && u.password === password);
-
-        if (!user) {
-            showAlert("بيانات الدخول غير صحيحة أو الحساب غير موجود!", "error");
+        // حساب افتراضي للأدمن في حال لم تقم بإنشائه يدوياً
+        if(email === ADMIN_EMAIL && password === "admin123") {
+            let adminUser = { name: "المدير العام", email: ADMIN_EMAIL, balance: 0, pending: 0 };
+            currentUser = adminUser;
+            localStorage.setItem('erbahi_logged', JSON.stringify(adminUser));
+            showAdminDashboard();
             return;
         }
 
-        currentUser = user;
-        localStorage.setItem('erbahi_current_user', JSON.stringify(user));
-        showAlert("تم تسجيل الدخول بنجاح!", "success");
-        setTimeout(showDashboard, 1000);
+        let found = users.find(u => u.email === email && u.password === password);
+        if(!found) {
+            showAlert("بيانات الدخول غير صحيحة!", "error");
+            return;
+        }
+
+        currentUser = found;
+        localStorage.setItem('erbahi_logged', JSON.stringify(found));
+        if(currentUser.email === ADMIN_EMAIL) {
+            showAdminDashboard();
+        } else {
+            showUserDashboard();
+        }
     }
 
-    function showDashboard() {
-        document.getElementById('login-section').classList.remove('active-section');
-        document.getElementById('signup-section').classList.remove('active-section');
-        document.getElementById('dashboard-section').classList.add('active-section');
-        
-        document.getElementById('header-title').innerText = "لوحة تحكم المستخدم";
-        document.getElementById('header-subtitle').innerText = "إدارة أرباحك وتنفيذ المهام";
-
-        document.getElementById('user-display-name').innerText = currentUser.name;
-        document.getElementById('user-display-email').innerText = currentUser.email;
-
-        updateValues();
+    function showUserDashboard() {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active-section'));
+        document.getElementById('user-dashboard').classList.add('active-section');
+        document.getElementById('u-name').innerText = currentUser.name;
+        document.getElementById('u-email').innerText = currentUser.email;
+        updateUIValues();
+        document.getElementById('ref-link').value = window.location.origin + window.location.pathname + "?ref=" + encodeURIComponent(currentUser.email);
     }
 
-    function updateValues() {
-        document.getElementById('balance-val').innerText = `$${currentUser.balance.toFixed(2)}`;
-        document.getElementById('pending-val').innerText = `$${currentUser.pending.toFixed(2)}`;
+    function updateUIValues() {
+        document.getElementById('u-balance').innerText = `$${currentUser.balance.toFixed(2)}`;
+        document.getElementById('u-pending').innerText = `$${currentUser.pending.toFixed(2)}`;
     }
 
-    let taskInterval;
+    function switchUserTab(tab) {
+        document.querySelectorAll('.user-subtab').forEach(t => t.style.display = 'none');
+        document.querySelectorAll('.nav-tab').forEach(n => n.classList.remove('active'));
+        if(tab === 'tasks') {
+            document.getElementById('utab-tasks').style.display = 'block';
+            event.target.classList.add('active');
+        } else if(tab === 'wallet') {
+            document.getElementById('utab-wallet').style.display = 'block';
+            event.target.classList.add('active');
+        } else if(tab === 'invite') {
+            document.getElementById('utab-invite').style.display = 'block';
+            event.target.classList.add('active');
+        }
+    }
+
+    let taskTimer;
     function startTask() {
-        const btn = document.getElementById('task-btn');
-        const timerBox = document.getElementById('timer-box');
-        const countdownSpan = document.getElementById('countdown');
-        
+        let btn = document.getElementById('task-btn');
+        let timerBox = document.getElementById('timer-box');
+        let countSpan = document.getElementById('countdown');
         btn.disabled = true;
-        btn.style.opacity = "0.5";
-        timerBox.style.display = "block";
+        timerBox.style.display = 'block';
         let timeLeft = 10;
-        countdownSpan.innerText = timeLeft;
+        countSpan.innerText = timeLeft;
 
-        taskInterval = setInterval(() => {
+        taskTimer = setInterval(() => {
             timeLeft--;
-            countdownSpan.innerText = timeLeft;
-            if (timeLeft <= 0) {
-                clearInterval(taskInterval);
-                timerBox.style.display = "none";
+            countSpan.innerText = timeLeft;
+            if(timeLeft <= 0) {
+                clearInterval(taskTimer);
+                timerBox.style.display = 'none';
                 btn.disabled = false;
-                btn.style.opacity = "1";
-
                 currentUser.pending += 0.50;
                 saveUserData();
-                updateValues();
-                showAlert("تم إنجاز المهمة بنجاح! أضيفت الأرباح إلى رصيدك المعلق.", "success");
+                updateUIValues();
+                showAlert("تم إنجاز المهمة وإضافة الربح للمعلق!", "success");
             }
         }, 1000);
     }
 
-    function transferPendingToBalance() {
-        if (currentUser.pending <= 0) {
-            showAlert("لا توجد أرباح معلقة لتحويلها حالياً!", "error");
-            return;
-        }
-
+    function transferPending() {
+        if(currentUser.pending <= 0) { showAlert("لا توجد أرباح معلقة!", "error"); return; }
         currentUser.balance += currentUser.pending;
         currentUser.pending = 0;
         saveUserData();
-        updateValues();
-        showAlert("تم تحويل الأرباح بنجاح إلى رصيدك المتاح (البلانس)! 🚀", "success");
+        updateUIValues();
+        showAlert("تم تحويل الأرباح إلى البلانس المتاح بنجاح!", "success");
+    }
+
+    function requestWithdraw() {
+        let amt = parseFloat(document.getElementById('withdraw-amount').value);
+        if(isNaN(amt) || amt < 5) { showAlert("الحد الأدنى للسحب هو $5", "error"); return; }
+        if(amt > currentUser.balance) {showAlert("رصيدك المتاح لا يكفي!", "error"); return; }
+        currentUser.balance -= amt;
+        saveUserData();
+        updateUIValues();
+        showAlert("تم إرسال طلب السحب بنجاح للمراجعة!", "success");
+    }
+
+    function requestDeposit() {
+        let tx = document.getElementById('deposit-tx').value.trim();
+        if(!tx) { showAlert("يرجى إدخال رقم المعاملة", "error"); return; }
+        showAlert("تم إرسال طلب الشحن بنجاح وسيتم مراجعته قريباً!", "success");
+        document.getElementById('deposit-tx').value = "";
+    }
+
+    function copyRefLink() {
+        let copyText = document.getElementById('ref-link');
+        copyText.select();
+        navigator.clipboard.writeText(copyText.value);
+        showAlert("تم نسخ رابط الإحالة بنجاح!", "success");
+    }
+
+    function showAdminDashboard() {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active-section'));
+        document.getElementById('admin-dashboard').classList.add('active-section');
+        document.getElementById('adm-users-count').innerText = users.length;
+        
+        let table = document.getElementById('users-table');
+        table.innerHTML = `<tr><th>الاسم</th><th>البريد</th><th>الرصيد ($)</th><th>إجراء</th></tr>`;
+        users.forEach((u, index) => {
+            table.innerHTML += `<tr>
+                <td>${u.name}</td>
+                <td>${u.email}</td>
+                <td>$${u.balance.toFixed(2)}</td>
+                <td><button class="btn-danger" style="padding:3px 6px; font-size:10px;" onclick="deleteUser(${index})">حذف</button></td>
+            </tr>`;
+        });
+    }
+
+    function deleteUser(index) {
+        users.splice(index, 1);
+        localStorage.setItem('erbahi_all_users', JSON.stringify(users));
+        showAdminDashboard();
+        showAlert("تم حذف المستخدم بنجاح.", "success");
     }
 
     function saveUserData() {
-        localStorage.setItem('erbahi_current_user', JSON.stringify(currentUser));
-        let registeredUsers = JSON.parse(localStorage.getItem('erbahi_users')) || [];
-        const index = registeredUsers.findIndex(u => u.email === currentUser.email);
-        if (index !== -1) {
-            registeredUsers[index] = currentUser;
-            localStorage.setItem('erbahi_users', JSON.stringify(registeredUsers));
+        localStorage.setItem('erbahi_logged', JSON.stringify(currentUser));
+        let idx = users.findIndex(u => u.email === currentUser.email);
+        if(idx !== -1) {
+            users[idx] = currentUser;
+            localStorage.setItem('erbahi_all_users', JSON.stringify(users));
         }
     }
 
-    function handleLogout() {
-        localStorage.removeItem('erbahi_current_user');
-        currentUser = null;
-        document.getElementById('dashboard-section').classList.remove('active-section');
-        switchTab('login');
+    function logout() {
+        localStorage.removeItem('erbahi_logged');
+        location.reload();
     }
 </script>
 
